@@ -1,0 +1,18 @@
+1. Oracle 드라이버 다운로드 사이트
+http://cx-oracle.sourceforge.net/
+https://pypi.python.org/pypi/cx_Oracle/5.2.1
+
+2. 드라이버 파일 다운로드(Python 3.4 window용) 
+cx_Oracle-5.2.1-11g.win-amd64-py3.4.exe (md5) 
+
+3. 드라이버 파일 설치 
+cx_Oracle-5.2.1-11g.win-amd64-py3.4
+설치위치 확인 : C:\Python34\Lib\site-packages\
+
+5. 설치된 폴더 확인  
+C:\Python34\Lib\site-packages\cx_Oracle-5.2.1-py3.4.egg-info
+
+6. Python에서 모듈 추가 및 DB 연동 객체 생성
+import cx_Oracle
+dsn = cx_Oracle.makedsn("HOST", PORT번호, "DB이름")
+conn = cx_Oracle.connect("user", "비밀번호", dsn)

@@ -22,8 +22,44 @@ try :
     #SQL 사용 객체
     cursor = conn.cursor()
     
+    #1. url에서 data 요청
+    '''
+    url = "https://api.github.com/repos/pydata/pandas/milestones/28/labels"
+    result = requests.get(url) #data 가져오기
+    print(type(result))
     
+    #2.json data 변환
+    data=result.json()
     
+    print(type(data))
+    #3. json data 출력
+    cnt=1
+
+    for d in data:
+        print('['+str(cnt)+']',d['id'],d['url'],d['name'],d['color'],d['default'])
+        cnt+=1
+        
+    
+    #4. table에 레코드 저장
+    sql = "insert into labels values(%s, %s, %s, %s, %s, %s)"
+    cnt = 1
+    for d in data: 
+        id = d['id'];url=d['url'];name=d['name'];color=d['color'];default=d['default']
+        sql_data =(cnt,id,url,name,color,default)
+        cursor.execute(sql,sql_data)
+        conn.commit()
+        cnt+=1
+    '''
+    
+    #5. 테이블 전체 레코드 조회
+    sql ="select * from labels"
+    cursor.execute(sql)
+    dataset = cursor.fetchall()
+    for r in dataset:
+        print(r)
+    print('전체 레코드 수:%d'%len(dataset))
+        
+        
 #DB 연결 예외 처리
 except mysql.connector.Error as err:
     if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
