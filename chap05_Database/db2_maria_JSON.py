@@ -23,9 +23,10 @@ try :
     cursor = conn.cursor()
     
     #1. url에서 data 요청
-    '''
+    
     url = "https://api.github.com/repos/pydata/pandas/milestones/28/labels"
-    result = requests.get(url) #data 가져오기
+    url2 = "http://192.168.0.145:8282/Data_Server/data/labels.json"
+    result = requests.get(url2) #data 가져오기
     print(type(result))
     
     #2.json data 변환
@@ -39,7 +40,7 @@ try :
         print('['+str(cnt)+']',d['id'],d['url'],d['name'],d['color'],d['default'])
         cnt+=1
         
-    
+    '''
     #4. table에 레코드 저장
     sql = "insert into labels values(%s, %s, %s, %s, %s, %s)"
     cnt = 1
@@ -49,7 +50,6 @@ try :
         cursor.execute(sql,sql_data)
         conn.commit()
         cnt+=1
-    '''
     
     #5. 테이블 전체 레코드 조회
     sql ="select * from labels"
@@ -58,7 +58,7 @@ try :
     for r in dataset:
         print(r)
     print('전체 레코드 수:%d'%len(dataset))
-        
+    ''' 
         
 #DB 연결 예외 처리
 except mysql.connector.Error as err:
