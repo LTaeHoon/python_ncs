@@ -44,7 +44,7 @@ class Today:
     month = None
     day =None
     # 2.생성자 : 객체 생성 역할(함수 유사)   
-    def __init__(self,year,month,day): #1.객체 생성 +2. 멤버변수 초기화
+    def __init__(self,year,month,day): #1.객체 생성 + 2.멤버변수 초기화
         self.year = year
         self.month = month
         self.day = day
@@ -115,3 +115,7 @@ benz = Car(4,2200,'benz E200')
 sonata.display() 
 #NF 소나타는 엔진이 2500cc이고 문짝은 4개 이다.
 benz.display()
+
+#obj2 생성
+santa = Car(5,3000,'산타페3.0')
+santa.display()
